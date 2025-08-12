@@ -1,40 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 // Square component represents each cell on the Tic Tac Toe board
-const Square = ({ value, onClick, isWinningSquare }) => {
-  const baseClasses = "w-24 h-24 flex items-center justify-center text-5xl font-bold border-2 border-gray-400 rounded-lg cursor-pointer transition-all duration-200 ease-in-out";
-  const winningClasses = isWinningSquare ? "bg-green-300 text-white" : "hover:bg-gray-100";
-
-  return (
-    <button
-      className={`${baseClasses} ${winningClasses}`}
-      onClick={onClick}
-    >
-      {value}
-    </button>
-  );
-};
+//import { Square } from './components/square';
 
 // Board component renders the 3x3 grid of squares
-const Board = ({ squares, onClick, winningLine }) => {
-  const renderSquare = (i) => {
-    const isWinningSquare = winningLine && winningLine.includes(i);
-    return (
-      <Square
-        key={i}
-        value={squares[i]}
-        onClick={() => onClick(i)}
-        isWinningSquare={isWinningSquare}
-      />
-    );
-  };
-
-  return (
-    <div className="grid grid-cols-3 gap-2 p-4 bg-white rounded-xl shadow-lg">
-      {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((i) => renderSquare(i))}
-    </div>
-  );
-};
+import { Board } from './components/board';
 
 // Game component manages the overall game logic and state
 const App = () => {
@@ -59,6 +29,7 @@ const App = () => {
     setHistory(newHistory.concat([{ squares: currentSquares }]));
     setStepNumber(newHistory.length);
     setXIsNext(!xIsNext);
+    //check to see there is no place to go that is tie 
   };
 
   // Jumps to a specific move in the game history
